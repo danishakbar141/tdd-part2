@@ -1,0 +1,25 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package part2;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Danish Akbar
+ */
+public class WasRunTest {
+    
+    
+    @Test
+    public void testTestMethod() {
+        System.out.println("testMethod");
+        WasRun instance = new WasRun();
+        assertFalse(instance.wasRun);
+        instance.run();
+        assertTrue(instance.wasRun);
+    }
+}
