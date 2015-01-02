@@ -20,12 +20,16 @@ public class TestCase {
      public void run() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 //         Method method=this.getClass().getMethod(name);
 //         method.invoke(this);
+         setup();
          Method method2=this.getClass().getDeclaredMethod(name);
          method2.setAccessible(true);
          method2.invoke(this, null);
+         tearDown();
          
      }
      public void setup(){
          
      }
+      public void tearDown(){
+    }
 }
