@@ -11,6 +11,7 @@ package part2;
 public class WasRun extends TestCase{
     public boolean wasRun;
     public boolean wasSetup;
+    public String log;
     
 
     public WasRun(String name) {
@@ -24,6 +25,7 @@ public class WasRun extends TestCase{
    public void wasSetup() {
         wasRun=false;
         wasSetup=true;
+        log="wasSetup";
     }
     
 }
