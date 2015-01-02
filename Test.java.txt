@@ -4,21 +4,57 @@
  */
 package part2;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Danish Akbar
  */
-public class WasRun {
-    public boolean wasRun;
+public class Test {
 
-    public WasRun() {
-        this.wasRun = false;
+    WasRun instance = null;
+
+    public void setup() {
+        instance = new WasRun("testMethod");
     }
-    public void run(){
-        tesMethod();
+
+    public void testRunning() {
+        try {
+            instance.run();
+            assert instance.wasRun;
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    private void tesMethod(){
-        this.wasRun=true;
+
+    public void testSetUp() {
+        try {
+            instance.run();
+            assert instance.wasSetup;
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
+    public static void main(String[] args) {
+        Test t = new Test();
+         t.setup();
+        t.testRunning();
+        t.testSetUp();
+
+    }
 }
