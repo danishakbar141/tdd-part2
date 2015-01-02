@@ -8,13 +8,14 @@ package part2;
  *
  * @author Danish Akbar
  */
-public class WasRun {
+public class WasRun extends TestCase{
     public boolean wasRun;
 
-    public WasRun() {
+    public WasRun(String name) {
+        super(name);
         this.wasRun = false;
     }
-    public void run(){
+    private void testMethod(){
         this.wasRun=true;
     }
     
