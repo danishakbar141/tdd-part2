@@ -24,6 +24,7 @@ public class Test {
         try {
             instance.run();
             assert instance.wasRun;
+            System.out.println(instance.wasRun);
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -34,12 +35,11 @@ public class Test {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public void testSetUp() {
         try {
             instance.run();
-            assert instance.wasSetup;
-            assert "wasSetup".equals(instance);
+            assert "wasSetup testMethod".equals(instance.log);
+            System.out.println("wasSetup testMethod".equals(instance.log));
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -50,12 +50,30 @@ public class Test {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void testTemplateMethod(){
+        try {
+            instance=new WasRun("testMethod");
+            instance.run();
+           assert("setUp testMethod " == instance.log);
+            System.out.println("wasSetup testMethod tearDown".equals(instance.log));
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+   
 
     public static void main(String[] args) {
         Test t = new Test();
         t.setup();
         t.testRunning();
         t.testSetUp();
-
+        t.testTemplateMethod();
     }
 }
