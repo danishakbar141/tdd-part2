@@ -39,6 +39,7 @@ public class Test {
         try {
             instance.run();
             assert instance.wasSetup;
+            assert "wasSetup".equals(instance);
         } catch (NoSuchMethodException ex) {
             Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -52,7 +53,7 @@ public class Test {
 
     public static void main(String[] args) {
         Test t = new Test();
-         t.setup();
+        t.setup();
         t.testRunning();
         t.testSetUp();
 
