@@ -10,13 +10,20 @@ package part2;
  */
 public class WasRun extends TestCase{
     public boolean wasRun;
+    public boolean wasSetup;
+    
 
     public WasRun(String name) {
         super(name);
         this.wasRun = false;
     }
     private void testMethod(){
-        this.wasRun=true;
+        wasRun=true;
+    }
+
+   public void wasSetup() {
+        wasRun=false;
+        wasSetup=true;
     }
     
 }
