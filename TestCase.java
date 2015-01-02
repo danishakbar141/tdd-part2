@@ -25,4 +25,7 @@ public class TestCase {
          method2.invoke(this, null);
          
      }
+     public void setup(){
+         
+     }
 }
