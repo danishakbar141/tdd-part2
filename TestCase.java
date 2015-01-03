@@ -4,7 +4,6 @@
  */
 package part2;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -17,15 +16,21 @@ public class TestCase {
     public TestCase(String name) {
         this.name = name;
     }
-     public TestResult run() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+     public TestResult run() {
 //         Method method=this.getClass().getMethod(name);
 //         method.invoke(this);
          TestResult result= new TestResult();
          result.TestStarted();
          Setup();
+         try{
          Method method2=this.getClass().getDeclaredMethod(name);
          method2.setAccessible(true);
          method2.invoke(this, null);
+         }
+         catch(Exception e){
+         result.TestFailed();
+         }
+                 
          tearDown();
         return result;
          

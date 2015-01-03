@@ -10,13 +10,19 @@ package part2;
  */
 public class TestResult {
     public int runCount;
+    public int errorCount;
+    
     TestResult(){
     runCount=0;
+    errorCount=0;
     }
     public void TestStarted(){
     runCount+=1;
     }
+    public void TestFailed(){
+    errorCount+=1;
+    }
     public String Summary(){
-    return runCount+" run, 0 failed";
+    return runCount+" run,"+ errorCount+ " failed";
     }
 }
