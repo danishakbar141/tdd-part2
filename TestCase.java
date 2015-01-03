@@ -12,14 +12,13 @@ import java.lang.reflect.Method;
  */
 public class TestCase {
     private String name;
-
+    protected TestResult result;
     public TestCase(String name) {
         this.name = name;
     }
-     public TestResult run() {
+     public void run(TestResult result) {
 //         Method method=this.getClass().getMethod(name);
 //         method.invoke(this);
-         TestResult result= new TestResult();
          result.TestStarted();
          Setup();
          try{
@@ -32,7 +31,6 @@ public class TestCase {
          }
                  
          tearDown();
-        return result;
          
      }
      public void Setup(){

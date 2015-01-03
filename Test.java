@@ -8,25 +8,22 @@ package part2;
  *
  * @author Danish Akbar
  */
-public class Test {
+public class Test extends TestCase {
 
-    WasRun instance = null;
+    private WasRun instance;
+    private TestSuite suite;
 
-    public void setup() {
-        instance = new WasRun("testMethod");
+    Test(String testMethodName) {
+        super(testMethodName);
     }
 
-    public void testRunning() {
-
-        instance.run();
-        assert instance.wasRun;
-        System.out.println(instance.wasRun);
-
+    public void setup() {
+        result = new TestResult();
     }
 
     public void testSetUp() {
-
-        instance.run();
+        instance = new WasRun("testMethod");
+        instance.run(result);
         assert "wasSetup testMethod".equals(instance.log);
         System.out.println("wasSetup testMethod".equals(instance.log));
     }
@@ -34,7 +31,7 @@ public class Test {
     public void testTemplateMethod() {
 
         instance = new WasRun("testMethod");
-        instance.run();
+        instance.run(result);
         assert ("setUp testMethod ".equals(instance.log));
         System.out.println("wasSetup testMethod tearDown".equals(instance.log));
 
@@ -44,14 +41,14 @@ public class Test {
     public void testResult() {
 
         instance = new WasRun("testMethod");
-        TestResult result = instance.run();
+        instance.run(result);
         assert ("1 run, 0 failed".equals(result.Summary()));
         System.out.println("1 run, 0 failed".equals(result.Summary()));
     }
 
     public void testFailed() {
         instance = new WasRun("testBrokenMethod");
-        TestResult result = instance.run();
+        instance.run(result);
         assert ("1 run, 1 failed".equals(result.Summary()));
         System.out.println("1 run, 1 failed".equals(result.Summary()));
     }
@@ -64,14 +61,25 @@ public class Test {
         System.out.println("1 run,1 failed".equals(result.Summary()));
     }
 
+    public void testsuite() {
+
+        instance = new WasRun("testMethod");
+        instance.run(result);
+        assert ("setUp testMethod ".equals(instance.log));
+        System.out.println("wasSetup testMethod tearDown".equals(instance.log));
+
+
+    }
+
     public static void main(String[] args) {
-        Test t = new Test();
-        t.setup();
-        t.testRunning();
-        t.testSetUp();
-        t.testTemplateMethod();
-        t.testResult();
-        t.testFailed();
-        t.testFailedResultFormatting();
+        TestSuite suite = new TestSuite();
+        TestResult result = new TestResult();
+        suite.add(new Test("testTemplateMethod"));
+        suite.add(new Test("testResult"));
+        suite.add(new Test("testFailedResultFormatting"));
+        suite.add(new Test("testFailedResult"));
+        suite.add(new Test("testSuite"));
+        suite.run(result);
+        System.out.println(result.Summary());
     }
 }
