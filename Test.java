@@ -1,0 +1,114 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package part2;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Danish Akbar
+ */
+public class Test {
+
+    WasRun instance = null;
+
+    public void setup() {
+        instance = new WasRun("testMethod");
+    }
+
+    public void testRunning() {
+        try {
+            instance.run();
+            assert instance.wasRun;
+            System.out.println(instance.wasRun);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void testSetUp() {
+        try {
+            instance.run();
+            assert "wasSetup testMethod".equals(instance.log);
+            System.out.println("wasSetup testMethod".equals(instance.log));
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void testTemplateMethod(){
+        try {
+            instance=new WasRun("testMethod");
+            instance.run();
+           assert("setUp testMethod " == instance.log);
+            System.out.println("wasSetup testMethod tearDown".equals(instance.log));
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    public void testResult(){
+        try {
+            instance =new WasRun("testMethod");
+            TestResult result= instance.run();
+            assert("1 run, 0 failed".equals(result.Summary()));
+            System.out.println("1 run, 0 failed".equals(result.Summary()));
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void testFailed(){
+        try {
+            instance =new WasRun("testBrokenMethod");
+            TestResult result= instance.run();
+            assert("1 run, 1 failed".equals(result.Summary()));
+            System.out.println("1 run, 1 failed".equals(result.Summary()));
+            System.out.println("1 run, 0 failed".equals(result.Summary()));
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(Test.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.setup();
+        t.testRunning();
+        t.testSetUp();
+        t.testTemplateMethod();
+        t.testResult();
+       // t.testFailed();
+    }
+}

@@ -15,17 +15,22 @@ public class WasRun extends TestCase{
 
     public WasRun(String name) {
         super(name);
-        wasSetup();
+        Setup();
     }
     private void testMethod(){
         wasRun=true;
         log+="testMethod";
     }
+    public void testBrokenMethod() throws Exception{
+    throw  new Exception();
+    }
 
-   public void wasSetup() {
+    @Override
+   public void Setup() {
         wasRun=false;
         log="wasSetup ";
     }
+    @Override
    public void tearDown(){
    log+="tearDown";
    }

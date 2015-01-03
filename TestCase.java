@@ -17,17 +17,20 @@ public class TestCase {
     public TestCase(String name) {
         this.name = name;
     }
-     public void run() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+     public TestResult run() throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
 //         Method method=this.getClass().getMethod(name);
 //         method.invoke(this);
-         setup();
+         TestResult result= new TestResult();
+         result.TestStarted();
+         Setup();
          Method method2=this.getClass().getDeclaredMethod(name);
          method2.setAccessible(true);
          method2.invoke(this, null);
          tearDown();
+        return result;
          
      }
-     public void setup(){
+     public void Setup(){
          
      }
       public void tearDown(){
